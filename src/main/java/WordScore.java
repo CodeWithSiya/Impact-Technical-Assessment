@@ -4,8 +4,9 @@ import java.util.ArrayList;
 
 /**
  * The WordScore class computes the Scrabble score for a given word based on the Scrabble point system.
- * It assigns values to letters according to the following system:
+ * This class provides functionality to calculate and obtain the total score of a given word.
  * 
+ * It assigns values to letters according to the following system:
  * Letter                           Value
  * A, E, I, O, U, L, N, R, S, T       1
  * D, G                               2
@@ -15,10 +16,12 @@ import java.util.ArrayList;
  * J, X                               8
  * Q, Z                               10
  * 
+ * Extentions: Allow the user to specify double or triple letters/words.
+ * 
  * @author Siyabonga Madondo
- * @version 23 September 2024
+ * @version 23/09/2024
  */
-@SuppressWarnings("unused")
+
 public class WordScore 
 {
     /** 
@@ -31,6 +34,18 @@ public class WordScore
      * Stores the total score for the word being processed. 
      */
     private int score;
+
+    /**
+     * Constants for the double and triple letter multipliers.
+     */
+    private static final int DOUBLE_LETTER = 2;
+    private static final int TRIPLE_LETTER = 3;
+ 
+    /**
+     * Constants for the double and triple word multipliers.
+     */
+    private static final int DOUBLE_WORD = 2;
+    private static final int TRIPLE_WORD = 3;
 
     /**
      * Create a new WordScore object from the given word and compute it's score.
@@ -75,8 +90,9 @@ public class WordScore
             for (ArrayList<String> category : points.keySet()) {
                 // Check if the current category contains the current letter.
                 if (category.contains(letter)) {
-                    score += points.get(category);  // Add the corresponding point value.
-                    break;  // Exit the inner loop once we found the matching category.
+                    // Add the corresponding point value and exit the inner loop.
+                    score += points.get(category);
+                    break; 
                 }
             }
         }
