@@ -6,8 +6,11 @@ repositories {
   mavenCentral()
 }
 
+/**
+  * Changed testCompile to testImplementation for the gradle test to run on my machine (version 8.10.1).
+ */
 dependencies {
-  testCompile "junit:junit:4.13"
+  testImplementation "junit:junit:4.13" 
   testImplementation "org.assertj:assertj-core:3.15.0"
 }
 

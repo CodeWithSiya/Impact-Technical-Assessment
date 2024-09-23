@@ -50,7 +50,7 @@ public class WordScore
      * @param letterMultipliers An array of integers representing multipliers for each letter.
      * @param wordMultiplier The multiplier for the entire word score.
      */
-    public WordScore(String word, int[] letterMultipliers, int[] wordMultiplier) {
+    public WordScore(String word, int[] letterMultipliers, int wordMultiplier) {
         WordScore.initialisePointSystem();
         this.score = WordScore.computeScore(word, letterMultipliers, wordMultiplier);
     }
@@ -106,8 +106,9 @@ public class WordScore
     private static int computeScore(String word, int[] letterMultipliers, int wordMultiplier) throws IllegalArgumentException {
         // Check if the length of letterMultipliers matches the word length.
         if (word.length() != letterMultipliers.length) {
-            throw IllegalArgumentException("Length of letterMultipliers must match the word length");
+            throw new IllegalArgumentException("Length of letterMultipliers must match the word length");
         } 
+
         // Initialise the score to zero.
         int score = 0;
         // Loop through each character of the word to obtain the score.
