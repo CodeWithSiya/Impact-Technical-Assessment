@@ -33,9 +33,22 @@ public class WordScore
     private int score;
 
     /**
+     * Create a new WordScore object from the given word and compute it's score.
+     * @param word The word which the Scrabble score needs to be computed for.
+     */
+    public WordScore(String word) {
+        // Initialise the point system and the score for the current word.
+        WordScore.initialisePointSystem();
+        // Compute the score for the current word and set the score.
+        this.score = WordScore.computeScore(word);
+    }
+
+    /**
      * Initialises the letter categories and their corresponding Scrabble point values.
      */
-    private void initialisePointSystem() {
+    private static void initialisePointSystem() {
+        // Initialise the points HashMap.
+        points = new HashMap<>();
         // Add each letter group and their corresponding point values to the points HashMap.
         points.put(new ArrayList<>(Arrays.asList("A", "E", "I", "O", "U", "L", "N", "R", "S", "T")), 1);
         points.put(new ArrayList<>(Arrays.asList("D", "G")), 2);
@@ -51,18 +64,19 @@ public class WordScore
      * @param word The word which the Scrabble score needs to be computed for.
      * @return The total score for the given word.
      */
-    private int computeScore(String word) {
+    private static int computeScore(String word) {
         // Initialise the score to zero.
         int score = 0;
         // Loop through each character of the word to obtain the score.
         for (int i = 0; i < word.length(); i++) {
             // Obtain the current letter from the word.
-            String letter = word.substring(i, i+1);
+            String letter = word.substring(i, i+1).toUpperCase();
             // Loop through each category in the points HashMap.
             for (ArrayList<String> category : points.keySet()) {
                 // Check if the current category contains the current letter.
                 if (category.contains(letter)) {
                     score += points.get(category);  // Add the corresponding point value.
+                    break;  // Exit the inner loop once we found the matching category.
                 }
             }
         }
@@ -70,18 +84,10 @@ public class WordScore
     }
     
     /**
-     * 
-     * @param word
-     */
-    WordScore(String word) {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
-    }
-
-    /**
      * Obtain the score for the current word.
      * @return  The total Scrabble score for the current word.
      */
-    int getScore() {
-        return score;
+    public int getScore() {
+        return this.score;
     }
 }
