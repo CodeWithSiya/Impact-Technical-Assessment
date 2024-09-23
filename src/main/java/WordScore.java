@@ -69,11 +69,19 @@ public class WordScore
         return score;
     }
     
+    /**
+     * 
+     * @param word
+     */
     WordScore(String word) {
         throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
     }
 
+    /**
+     * Obtain the score for the current word.
+     * @return  The total Scrabble score for the current word.
+     */
     int getScore() {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
+        return score;
     }
 }
